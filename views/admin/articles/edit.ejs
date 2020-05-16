@@ -1,0 +1,62 @@
+<%- include("../../partials/head.ejs") %>
+<%-include("../../partials/navbar.ejs") %>
+<body>
+  <div class="container">
+    <br />
+    <div class="card">
+      <div class="card-header">
+        <h2>Novo Artigo</h2>
+      </div>
+      <div class="card-body">
+        <form method="POST" action="/articles/edit">
+          <input
+            class="form-control"
+            type="text"
+            name="title"
+            placeholder="Defina o título do artigo"
+            value="<%= article.title %>"
+          />
+          <br />
+          <textarea
+            name="body"
+            class="form-control"
+            id="article"
+            placeholder="Escreva o artigo aqui"
+            cols="30"
+            rows="12"
+          >
+          <%= article.body %> </textarea
+          >
+
+          <br />
+          <h4>Categoria</h4>
+          <select name="category" id="" class="form-control">
+            <% categories.forEach(element => { %> <% if (element.id ==
+            article.categoryId) { %>
+            <option value="<%=element.id%>" selected>
+              <%= element.title %>
+            </option>
+            <% } else { %>
+            <option value="<%=element.id%>"> <%= element.title %> </option>
+            <% } %> <% }) %>
+          </select>
+          <br />
+          <input type="hidden" name="id" value="<%= article.id %> " />
+          <button class="btn btn-success btn-large">Editar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+<%- include("../../partials/footer.ejs") %> s
+
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+  tinymce.init({
+    language: "pt_BR",
+    selector: "#article",
+    plugins: [
+      "advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons",
+    ],
+  });
+</script>

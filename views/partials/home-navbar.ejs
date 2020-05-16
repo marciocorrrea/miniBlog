@@ -1,0 +1,17 @@
+<nav class="navbar navbar-dark navbar-expand-lg bg-primary">
+  <a href="/" class="navbar-brand">
+    Blog
+  </a>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a href="/" class="nav-link">Home</a>
+    </li>
+    <% categories.forEach(element => { %>
+    <li class="nav-item">
+      <a href="/category/<%=element.slug%>" class="nav-link">
+        <%= element.title %>
+      </a>
+    </li>
+    <% }) %>
+  </ul>
+</nav>
